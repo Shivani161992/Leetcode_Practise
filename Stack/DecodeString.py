@@ -6,7 +6,7 @@ class Solution:
     def decodeString(self, s: str) -> str:
         print()
 
-        "Shivani Singh"
+        "hello world"
 
 o=Solution()
 y=o.decodeString(s)

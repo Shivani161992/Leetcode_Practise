@@ -8,7 +8,7 @@ class Solution:
             if x==y:
                 return i
         return -1
-    "My name is siddharth singh"
+    "hello siddharth singh"
 
 o=Solution()
 y=o.pivotIndex(nums)
