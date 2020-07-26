@@ -99,8 +99,8 @@ class Solution:
 
 
 o=Solution(root)
-#print(o.print_traversal(root))
-print(o.print_iteratively(root))
+print(o.print_traversal(root))
+#print(o.print_iteratively(root))
 
 
 
