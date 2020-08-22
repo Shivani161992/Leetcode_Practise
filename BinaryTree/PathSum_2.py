@@ -16,46 +16,46 @@ class Node:
 #
 #
 #
-root=Node(1)
-root.left=Node(2)
+root=Node(5)
+root.left=Node(4)
 root.right=Node(8)
 root.left.left=Node(11)
 root.left.left.left=Node(7)
 root.left.left.right=Node(2)
 root.right.left=Node(13)
 root.right.right=Node(4)
-root.right.right.left=Node(4)
+root.right.right.left=Node(5)
 root.right.right.right=Node(1)
 
-sum = 22
+ssum = 22
 
 # output= [[5,4,11,2], [5,8,4,5]]
 
 class Solution:
-    def pathSum(self, root: Node, sum: int) -> List[List[int]]:
+    def pathSum(self, root: Node, ssum: int) -> List[List[int]]:
+        cal = 0
         output=[]
-        group = []
-        result=self.helper(self,root, sum, output, group)
-        return result
+        group=''
+        return self.helper(root, ssum,  output, group, cal)
 
-    def helper(self, root, sum, output, group):
+    def helper(self, root, ssum, output, group, cal):
         if root is None:
-            return False
+            return output
         else:
-            sum = sum - root.val
-            group.append(root.val)
+            group= group + str(root.val) + ','
+            cal = cal + root.val
             if root.left is None and root.right is None:
-                if sum == 0:
-                    output.append(group.copy)
-                    return True
-            else:
-                left = self.helper(root.left, sum, output, group)
-                right = self.helper(root.right, sum, output, group)
-                if left == True or right== True:
-                    output.append(group.copy)
+                if cal == ssum:
+                    x=group.split(',')
+                    y= [int(i) for i in x[:-1]]
+                    output.append(y)
+                    return output
                 else:
-                    return False
 
+                    return output
+            left = self.helper(root.left, ssum, output, group, cal)
+            right = self.helper(root.right, ssum, output, group, cal)
+            return output
 
-obj= Solution()
-print(obj.pathSum(root, sum))
+obj=Solution()
+print(obj.pathSum(root, ssum))

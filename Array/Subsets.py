@@ -9,9 +9,6 @@ class Solution:
                 #hold = hold + str(nums[j])
                 hold.append(nums[j])
                 main.append(hold.copy())
-
-
-
         return main
 
 o=Solution()

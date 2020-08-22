@@ -17,13 +17,7 @@ class Node:
 #
 root=Node(1)
 root.left=Node(2)
-# root.right=Node(8)
-# root.left.left=Node(11)
-# root.left.left.left=Node(7)
-# root.left.left.right=Node(12)
-# root.right.left=Node(13)
-# root.right.right=Node(4)
-# root.right.right.right=Node(1)
+
 
 
 class Solution:
@@ -32,7 +26,7 @@ class Solution:
         result = self.helper(root, sum, cal)
         return result
 
-    def helper(self, root, sum, cal):
+    def helper_recursive(self, root, sum, cal):
         if root is None:
             return 0
         else:
@@ -48,6 +42,43 @@ class Solution:
                 else:
                     return False
 
+    def hasPathSum_iterative(self, root, sum: int) -> bool:
+        cal = 0
+        hold = [root]
+        seen = []
+        while len(hold) != 0:
+            get = hold[-1]
+            cal=cal + get.val
+            if get.left is not None and get.left not in seen:
+                hold.append(get.left)
+            elif get.right is not None and get.right not in seen:
+                hold.append(get.right)
+            elif get.left is None and get.right is None:
+                if cal == sum:
+                    return True
+                else:
+                    if len(hold) == 1:
+                        cal = cal - get.val
+                    else:
+                        second = hold[-2]
+                        cal = cal - (get.val + second.val)
+                    seen.append(get)
+                    hold.pop()
+            else:
+                if len(hold) == 1:
+                    cal = cal - get.val
+                else:
+                    second = hold[-2]
+                    cal = cal - (get.val + second.val)
+                seen.append(get)
+                hold.pop()
+
+        return False
+
+
+
+
 
 obj=Solution()
-print(obj.hasPathSum(root, sum))
+#print(obj.hasPathSum(root, sum))
+print(obj.hasPathSum_iterative(root, sum))
