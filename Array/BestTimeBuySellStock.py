@@ -1,5 +1,5 @@
 from typing import List
-prices=[]
+prices=[7,1,5,3,6,4]
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         max_profit=0
@@ -12,6 +12,7 @@ class Solution:
                 min_day = prices[i]
 
             else:
+                min= prices[i]-min_day
                 max_profit= max(max_profit, prices[i]-min_day)
 
         return max_profit

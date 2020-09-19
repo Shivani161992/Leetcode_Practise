@@ -1,46 +1,41 @@
 from typing import List
-matrix= [
- [ 1, 2, 3 ],
- [ 4, 5, 6 ],
- [ 7, 8, 9 ]
-]
+matrix=  [
+        [1, 2, 3, 4],
+        [5, 6, 7, 8],
+        [9, 10, 11, 12]
+    ]
+
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        spiral_traversal=[]
-        elements = len(matrix) * len(matrix[0]) # 9
-        spiral_elements= len(spiral_traversal)
-        top=0
-        left=0
-        bottom=len(matrix) - 1 # 2
-        right=len(matrix[0]) - 1 # 2
-        hold2 = len(matrix[0]) - 1
-        while spiral_elements < elements:
-            #for top
-            for i in matrix[top]:
-                spiral_traversal.append(i)
-            top= top + 1
+        hold = []
+        if len(matrix) == 0:
+            return hold
+        left = 0
+        right = len(matrix[0]) - 1
+        top = 0
+        bottom = len(matrix) - 1
 
-            #for right
+        elements = (right + 1) * (bottom + 1)
+        while len(hold) < elements:
+            if len(hold) < elements:
+                for i in range(left, (right + 1)):
+                    hold.append(matrix[top][i])
+                top = top + 1
 
+            if len(hold) < elements:
+                for j in range(top, (bottom + 1)):
+                    hold.append(matrix[j][right])
+                right = right - 1
 
-            while top <= bottom:
-                spiral_traversal.append(matrix[top][right])
-                top=top +1
-            right = right - 1
-
-            #for bottom
-            for k in matrix[bottom ]:
-                spiral_traversal.append(k)
-            bottom= bottom - 1
-
-            #for left
-            for l in matrix[left]:
-                spiral_traversal.append(l)
-            left= left + 1
-
-
-        return spiral_traversal
-
+            if len(hold) < elements:
+                for k in range(right, left - 1, -1):
+                    hold.append(matrix[bottom][k])
+                bottom = bottom - 1
+            if len(hold) < elements:
+                for l in range(bottom, top - 1, -1):
+                    hold.append(matrix[l][left])
+                left = left + 1
+        return hold
 
 o=Solution()
 y=o.spiralOrder(matrix)
