@@ -27,15 +27,24 @@ import heapq
 li = [5, 7, 9, 1, 3]
 class Solution:
     def mergeKLists(self, lists: List[ListNode]) -> ListNode:
-        merged=None
-        h= [(v.val, ind)for ind, v in enumerate(lists) if v]
+        merged = None
+        hold = None
+        h=[(l.val, idx) for idx, l in enumerate(lists) if l]
         heapq.heapify(h)
-        pop = heapq.heappop(h)
-
-        print(h)
-
-
-
+        while len(h) != 0:
+            pop=heapq.heappop(h)
+            if merged==None:
+                merged = lists[pop[1]]
+                hold = merged
+            elif merged!=None:
+                merged.next = lists[pop[1]]
+                merged = merged.next
+            if lists[pop[1]].next:
+                lists[pop[1]] = lists[pop[1]].next
+                heapq.heappush(h, (lists[pop[1]].val, pop[1]))
+            else:
+                lists[pop[1]] = None
+        return hold
 
 obj=Solution()
 print(obj.mergeKLists(lists))
