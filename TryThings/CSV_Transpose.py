@@ -1,5 +1,9 @@
-import pandas as pd
-x=pd.read_csv(r'C:\Users\toshi\Desktop\lab\ABR_MDTemplate_Rachal.csv')
-a=x.loc[x['vdts'] != 'FALSE']
 
-print(x)
+a=[1, 4, -1, 3, 2]
+
+count = 1
+value = a[0]
+while (value!=-1):
+    value = a[value]
+    count = count + 1
+print(count)
