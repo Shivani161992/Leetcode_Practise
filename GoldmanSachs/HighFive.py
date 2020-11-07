@@ -1,6 +1,7 @@
 items= [[1,91],[1,92],[2,93],[2,97],[1,60],[2,77],[1,65],[1,87],[1,100],[2,100],[2,76]]
 from typing import List
 from collections import defaultdict
+import heapq
 class Solution:
     def highFive(self, items: List[List[int]]) -> List[List[int]]:
         avg_score = []
