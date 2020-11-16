@@ -19,5 +19,3 @@ class Trie:
         """
         Returns if there is any word in the trie that starts with the given prefix.
         """
-
-

@@ -6,8 +6,11 @@ class Solution:
             return len(chars)
         else:
             idx = 0
+            #create move pointer which will be moving
             midx = 0
+            #hold character
             hold = ''
+            #count
             count = 0
             while idx < len(chars):
                 if hold == '':
