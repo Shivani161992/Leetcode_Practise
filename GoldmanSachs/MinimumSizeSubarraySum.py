@@ -3,19 +3,19 @@ s = 7
 nums = [2,3,1,2,4,3]
 class Solution:
     def minSubArrayLen(self, s: int, nums: List[int]) -> int:
-        if sum(nums) < s:
+        if sum(nums) < s or s ==0:
             return 0
-        min_sub=len(nums)
-        subarray=[]
-        idx= 0
-        while idx != len(nums)+1:
-            if sum(subarray) < s:
-                subarray.append(nums[idx])
-                idx= idx + 1
-            elif sum(subarray) >= s:
-                min_sub= min(min_sub, len(subarray))
-                subarray.pop(0)
-        return min_sub
+        else:
+            sidx= 0
+            msubarray= len(nums) + 1
+            for eidx in range(len(nums)):
+                subarray= nums[sidx:eidx+1]
+                while sum(nums[sidx:eidx+1]) >=s:
+                    msubarray= min(msubarray, len(nums[sidx:eidx+1]))
+                    sidx= sidx + 1
+            return msubarray
+
+
 
 
 
