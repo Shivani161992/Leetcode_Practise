@@ -21,7 +21,7 @@ root.left.right.left = Node('C')
 root.left.right.right = Node('E')
 root.right.right = Node('I')
 root.right.right.left = Node('H')
-
+from typing import List
 class Solution:
     def print_traversal(self, root):
         traversal=[]
@@ -45,5 +45,17 @@ class Solution:
                 traversal.append(group)
             return traversal
 
+    def preorderTraversalRecursive(self, root: Node) -> List[int]:
+        traversal = []
+        self.preTraversal(root, traversal)
+        return traversal
+
+    def preTraversal(self, root, traversal):
+        if root:
+            traversal.append(root.value)
+            self.preTraversal(root.left, traversal)
+            self.preTraversal(root.right, traversal)
+            return traversal
+
 obj= Solution()
-obj.print_traversal(root)
+print(obj.preorderTraversalRecursive(root))

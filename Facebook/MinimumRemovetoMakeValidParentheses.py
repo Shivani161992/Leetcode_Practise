@@ -22,6 +22,7 @@ class Solution:
                         store_paren.append(val)
                         store_idx.append(idx)
                     elif hold !='':
+
                         hold = hold + val
                         if hold == paren and len(store_paren) !=0 and store_paren[-1]=='(' :
                             hold = store_paren.pop()
