@@ -25,7 +25,16 @@ class Solution:
                 head= nex
             return prev 
     def middleNode(self, head: ListNode) -> ListNode:
-        print('hello')
+        if head is None:
+            return head
+        else:
+            slow= head
+            fast= head
+            while fast and fast.next:
+                slow= slow.next
+                fast= fast.next.next
+            return slow.val
+        
 
 obj= Solution()
 print(obj.middleNode(head))
