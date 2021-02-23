@@ -1,0 +1,32 @@
+from typing import List
+
+releaseTimes = [2,3,18,23,25,28,43,52,70,85]
+keysPressed = "jsjqofhxzp"
+
+
+class Solution:
+    def slowestKey(self, releaseTimes: List[int], keysPressed: str) -> str:
+        slowKeyTime = 0
+        slowKey = ''
+        keys = []
+        prevTime = 0
+        for i, time in enumerate(releaseTimes):
+            keyTime = time - prevTime
+            prevTime = time
+            if keyTime == slowKeyTime:
+                if len(keys) == 0:
+                    keys.append(slowKey)
+                keys.append(keysPressed[i])
+                slowKey = keysPressed[i]
+            if keyTime > slowKeyTime:
+                slowKeyTime = keyTime
+                slowKey = keysPressed[i]
+                keys=[]
+        if len(keys) == 0:
+            keys.append(slowKey)
+        keys.sort()
+        return keys[-1]
+
+
+obj = Solution()
+print(obj.slowestKey(releaseTimes, keysPressed))

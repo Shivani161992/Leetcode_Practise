@@ -1,0 +1,23 @@
+from typing import List
+
+boxTypes = [[4,2],[5,5],[4,1],[1,4],[2,5],[1,3],[5,3],[1,5],[5,5],[1,1]]
+truckSize = 24
+class Solution:
+    def maximumUnits(self, boxTypes: List[List[int]], truckSize: int) -> int:
+        boxTypes.sort(key=lambda x: -x[1])
+        maxUnits = 0
+        if truckSize == 0:
+            return maxUnits
+        else:
+            for types in boxTypes:
+                if types[0] < truckSize:
+                    maxUnits =  maxUnits + (types[0] * types[1])
+                    truckSize = truckSize - types[0]
+                elif types[0] >= truckSize:
+                    maxUnits= maxUnits + (truckSize * types[1])
+                    return maxUnits
+                if truckSize==0:
+                    return maxUnits
+            return maxUnits
+obj = Solution()
+print(obj.maximumUnits(boxTypes, truckSize))
