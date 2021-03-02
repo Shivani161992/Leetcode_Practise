@@ -2,7 +2,6 @@ from typing import List
 
 ops = ['1']
 
-
 class Solution:
     def calPoints(self, ops: List[str]) -> int:
         if len(ops) == 0:
