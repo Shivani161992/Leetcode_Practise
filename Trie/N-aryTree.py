@@ -8,10 +8,8 @@ head=Node(1)
 child1=Node(3)
 child2=Node(2)
 child3=Node(4)
-
 child4=Node(5)
 child5=Node(6)
-
 head.children=[child1, child2, child3]
 child1.children=[child4, child5]
 class Solution:
@@ -82,6 +80,42 @@ class Solution:
                 traversal.append(group.copy())
             return len(traversal)
 
+    def practisePreorder(self, root: 'Node') -> List[int]:
+        if root is None:
+            return []
+        else:
+            traversal=[]
+            stack=[root]
+            while len(stack) !=0:
+                getNode= stack.pop()
+                traversal.append(getNode.val)
+                if getNode.children is not None:
+                    for child in range(len(getNode.children)-1, -1, -1):
+                        stack.append(getNode.children[child])
+            return traversal
+
+    def practisePostorder(self, root: 'Node') -> List[int]:
+        if root is None:
+            return []
+        else:
+            stack=[root]
+            traversal=[]
+            seen=[]
+            while len(stack)!=0:
+                getNode= stack[-1]
+                if getNode.children is not None and getNode not in seen:
+                    seen.append(getNode)
+                    for c in range(len(getNode.children)-1, -1, -1):
+                        stack.append(getNode.children[c])
+                else:
+                    node= stack.pop()
+                    traversal.append(node.val)
+
+            return traversal
+
+
+
+
 
 obj=Solution()
-print(obj.levelOrder(head))
+print(obj.practisePostorder(head))

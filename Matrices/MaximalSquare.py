@@ -1,6 +1,6 @@
 from typing import List
 
-matrix = [["0","0","0","1","0","1","1","1"],["0","1","1","0","0","1","0","1"],["1","0","1","1","1","1","0","1"],["0","0","0","1","0","0","0","0"],["0","0","1","0","0","0","1","0"],["1","1","1","0","0","1","1","1"],["1","0","0","1","1","0","0","1"],["0","1","0","0","1","1","0","0"],["1","0","0","1","0","0","0","0"]]
+matrix = [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]
 
 
 class Solution:
@@ -55,8 +55,21 @@ class Solution:
         return larea
 
     def maximalSquareDP(self, matrix: List[List[str]]) -> int:
-        print()
+            if (len(matrix)==0):
+                return 0
+            else:
+                dp= [[0] * (len(matrix[0])+1)] * (len(matrix)+1)
+                row=len(matrix)
+                col= len(matrix[0])
+                maxArea=0
+                for r in range(row):
+                    for c in range(col):
+                        dp[r][c]= min(dp[r][c], dp[r][c], dp[r][c]) + 1
+                        maxArea= max(maxArea, dp[r][c])
+
+                return maxArea* maxArea
+
 
 
 obj = Solution()
-print(obj.maximalSquare(matrix))
+print(obj.maximalSquareDP(matrix))
