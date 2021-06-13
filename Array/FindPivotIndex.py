@@ -1,15 +1,16 @@
 from typing import List
-nums = [-1,-1,-1,0,1,1]
+nums = [1,7,3,6,5,6]
 class Solution:
     def pivotIndex(self, nums: List[int]) -> int:
-        for i in range(0, len(nums)):
-            x= sum(nums[:i])
-            y= sum(nums[i+1:])
-            if x==y:
-                return i
+        globalSum= sum(nums)
+        localSum=0
+        for idx, n in enumerate(nums):
+            if localSum == globalSum- (localSum + n):
+                return idx
+            else:
+                localSum= localSum + n
+
         return -1
-    "hello siddharth singh"
 
 o=Solution()
-y=o.pivotIndex(nums)
-print(y)
+print(o.pivotIndex(nums))
